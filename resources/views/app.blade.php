@@ -4,10 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <title>MKD</title>
     </head>
     <body>
-        <div id="root"></div>
+        <div class="container">
+            <div id="root"></div>
+        </div>
+
 
         <script src="{{ asset('js/app.js') }}"></script>
     </body>

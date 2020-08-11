@@ -11,29 +11,27 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Quiz from "./pages/quiz";
 import Dashboard from "./pages/dashboard";
+import ThankYou from "./pages/thank_you";
+import Error from "./pages/error";
 
 
-function App() {
-    return (
-        <Router>
-            <div>
-                <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <AuthenticatedRoute path="/dashboard">
-                        <Dashboard />
-                    </AuthenticatedRoute>
-                    <Route path="/:hash">
-                        <Quiz />
-                    </Route>
-                </Switch>
-            </div>
-        </Router>
-    );
+class App extends React.Component {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/thank-you" component={ThankYou} />
+                        <Route exact path="/error" component={Error} />
+                        <Route path="/login" component={Login} />
+                        <AuthenticatedRoute path="/dashboard" component={Dashboard} />
+                        <Route path="/:hash" component={Quiz} />
+                    </Switch>
+                </div>
+            </Router>
+        );
+    }
 }
 
 

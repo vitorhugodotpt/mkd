@@ -10,7 +10,7 @@ export const AuthenticatedRoute = ({ children, ...rest }) => {
         <Route
             {...rest}
             render={({ location }) =>
-                auth.isAuthenticated() ? (
+                auth.isAuthenticated()? (
                     children
                 ) : (
                     <Redirect
