@@ -49,27 +49,24 @@ class Login extends React.Component {
     render(){
         return (
             <div>
-                <h2>Login</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label>Email:</label>
-                            <input type="text" className="form-control" name="email"
-                                   onChange={this.handleInputChange}/>
-                        </div>
+                <form class="form-signin" onSubmit={this.handleSubmit}>
+                    <div className="text-center mb-4">
+                            <h1 className="h3 mb-3 font-weight-normal">Login</h1>
                     </div>
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label>Password:</label>
-                            <input type="password" className="form-control" name="password"
-                                   onChange={this.handleInputChange}/>
-                        </div>
+
+                    <div className="form-label-group">
+                        <input type="text" className="form-control" name="email"
+                               onChange={this.handleInputChange}/>
+                            <label htmlFor="inputEmail">Email address</label>
                     </div>
-                    <div className="form-row">
-                        <div className="form-group">
-                            <input type="submit" value="Submit" />
-                        </div>
+
+                    <div className="form-label-group">
+                        <input type="password" className="form-control" name="password"
+                               onChange={this.handleInputChange}/>
+                            <label htmlFor="inputPassword">Password</label>
                     </div>
+
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                 </form>
             </div>
         );

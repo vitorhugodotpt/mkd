@@ -1,10 +1,12 @@
 <?php
 
 use App\Answer;
+use App\Client;
 use App\Project;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -85,5 +87,77 @@ Route::post('/answers', static function (Request $request) {
 });
 
 Route::middleware('auth:api')->get('/dashboard', static function (Request $request) {
-    return response()->json(['success' => true, 'dashboard' => [$request->user()]]);
+
+    $sql = 'SELECT questions.id, avg(answer_question.value) as value FROM answer_question LEFT JOIN questions ON questions.id=answer_question.question_id WHERE questions.is_free_text=0 GROUP BY questions.id;';
+    $average = collect(DB::select($sql))
+        ->map(static function($row) {
+           return [
+             'title' => Question::find($row->id)->name,
+             'value' => number_format($row->value, 1, '.', ' ')
+           ];
+        });
+
+    $averageClient = [];
+    $projects = [];
+    $totalProjects = 0;
+    $clients = Client::get();
+    foreach ($clients as $client) {
+        $projectsID = $client->projects->pluck('id');
+        $answersID = Answer::whereIn('project_id', $projectsID)->pluck('id');
+        if(count($answersID) > 0) {
+            $sql = 'SELECT questions.id, avg(answer_question.value) as value FROM answer_question LEFT JOIN questions ON questions.id=answer_question.question_id WHERE questions.is_free_text=0 AND answer_question.answer_id IN ('.implode(',', $answersID->toArray()).') GROUP BY questions.id;';
+        }else {
+            continue;
+        }
+
+        $data['title'] = $client->name;
+        $data['data'] = collect(DB::select($sql))
+            ->map(static function($row) {
+                return [
+                    'title' => Question::find($row->id)->name,
+                    'value' => number_format($row->value, 1, '.', ' ')
+                ];
+            });
+
+        $averageClient[] = $data;
+
+
+        $data['data'] = $client->projects
+            ->map(static function($row) {
+                return [
+                    'title' => $row->name
+                ];
+            });
+
+        $totalProjects += count($data['data']);
+
+        $projects[] = $data;
+    }
+
+    $questions = Question::where('is_free_text', 1)->get();
+    foreach ($questions as $question) {
+
+        $sql = 'SELECT questions.id,value FROM answer_question LEFT JOIN questions ON questions.id=answer_question.question_id WHERE questions.is_free_text=1;';
+        $data['title'] = $question->name;
+        $data['data']  = collect(DB::select($sql))
+            ->map(static function($row) {
+                return [
+                    'title' => $row->value
+                ];
+            });
+
+        $freeText[] = $data;
+    }
+
+
+    return response()->json([
+        'success' => true,
+        'dashboard' => [
+                'average' => $average,
+                'average_clients' => $averageClient,
+                'free_text' => $freeText,
+                'projects' => $projects,
+                'total_projects' => $totalProjects
+            ]
+        ]);
 });

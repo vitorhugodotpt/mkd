@@ -14,7 +14,6 @@ class CreateAnswerQuestionTable extends Migration
     public function up()
     {
         Schema::create('answer_question', static function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('answer_id');
             $table->unsignedBigInteger('question_id');
             $table->string('value');

@@ -1,0 +1,25 @@
+.bg-purple {
+    background-color: #6f42c1;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    margin: 150px auto 0 auto;
+}
+
+button.logout {
+    border: 1px solid #ffffff;
+    background: none;
+    color: #ffffff;
+
+    &:hover {
+        background: #ffffff;
+        color: #6f42c1;
+    }
+}
+
+.badge {
+    padding: 10px;
+}

@@ -17,17 +17,17 @@ class AnswersQuestionsTableSeeder extends Seeder
             ['answer_id' => 1, 'question_id' => 2, 'value' => 7],
             ['answer_id' => 1, 'question_id' => 3, 'value' => 9],
             ['answer_id' => 1, 'question_id' => 4, 'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pellentesque, ligula vel molestie pretium, dui est sollicitudin mi, non vestibulum lacus orci in dui.'],
-            ['answer_id' => 1, 'question_id' => 4, 'value' => 'Maecenas viverra nunc quis quam semper vestibulum.'],
+            ['answer_id' => 1, 'question_id' => 5, 'value' => 'Maecenas viverra nunc quis quam semper vestibulum.'],
             ['answer_id' => 2, 'question_id' => 1, 'value' => 5],
             ['answer_id' => 2, 'question_id' => 2, 'value' => 5],
             ['answer_id' => 2, 'question_id' => 3, 'value' => 5],
             ['answer_id' => 2, 'question_id' => 4, 'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
-            ['answer_id' => 2, 'question_id' => 4, 'value' => 'Aenean pellentesque, ligula vel molestie pretium, dui est.'],
+            ['answer_id' => 2, 'question_id' => 5, 'value' => 'Aenean pellentesque, ligula vel molestie pretium, dui est.'],
             ['answer_id' => 3, 'question_id' => 1, 'value' => 9],
             ['answer_id' => 3, 'question_id' => 2, 'value' => 9],
             ['answer_id' => 3, 'question_id' => 3, 'value' => 9],
             ['answer_id' => 3, 'question_id' => 4, 'value' => 'Lorem ipsum dolor sit amet.'],
-            ['answer_id' => 3, 'question_id' => 4, 'value' => 'Aenean pellentesque.'],
+            ['answer_id' => 3, 'question_id' => 5, 'value' => 'Aenean pellentesque.'],
         ];
 
         foreach ($answerQuestions as $answerQuestion) {

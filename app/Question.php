@@ -11,7 +11,7 @@ class Question extends Model
     /**
      * @return BelongsToMany
      */
-    public function questions(): BelongsToMany
+    public function answers(): BelongsToMany
     {
         return $this->belongsToMany(Answer::class, 'answer_question')
             ->wherePivot('value');
