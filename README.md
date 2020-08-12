@@ -26,9 +26,8 @@ DB_USERNAME=root
 DB_PASSWORD=root
 ```
 * run ``` docker-compose up -d ```
-* run ``` php artisan migrate --seed ```
 * run ``` docker exec -it app bash ```
-
+* run ``` php artisan migrate --seed ```
 ## Routes
 Available routes
 
